@@ -73,6 +73,7 @@ public class KitsConfigManager extends DataFolderConfigManager{
         config.set("actions",null);
         saveActions(kit.getClaimActions(),"claim",config,kitItemManager);
         saveActions(kit.getErrorActions(),"error",config,kitItemManager);
+        saveActions(kit.getNoPermissionActions(),"no_permission",config,kitItemManager);
 
         config.set("display.default",null);
         if(kit.getDisplayItemDefault() != null){
@@ -154,6 +155,7 @@ public class KitsConfigManager extends DataFolderConfigManager{
         }
         ArrayList<KitAction> claimActions = getActions(config,"claim",mainPath,kitItemManager);
         ArrayList<KitAction> errorActions = getActions(config,"error",mainPath,kitItemManager);
+        ArrayList<KitAction> noPermissionActions = getActions(config,"no_permission",mainPath,kitItemManager);
 
         KitItem displayItemDefault = kitItemManager.getKitItemFromConfig(config,mainPath+"display.default");
         KitItem displayItemNoPermission = config.contains(mainPath+"display.no_permission") ?
@@ -187,6 +189,7 @@ public class KitsConfigManager extends DataFolderConfigManager{
         kit.setItems(items);
         kit.setClaimActions(claimActions);
         kit.setErrorActions(errorActions);
+        kit.setNoPermissionActions(noPermissionActions);
         kit.setDisplayItemDefault(displayItemDefault);
         kit.setDisplayItemNoPermission(displayItemNoPermission);
         kit.setDisplayItemCooldown(displayItemCooldown);

@@ -16,6 +16,7 @@ public class Kit {
     private ArrayList<KitItem> items;
     private ArrayList<KitAction> claimActions;
     private ArrayList<KitAction> errorActions;
+    private ArrayList<KitAction> noPermissionActions = new ArrayList<>();
     private boolean saveOriginalItems;
     private boolean allowPlaceholdersOnOriginalItems;
 
@@ -125,6 +126,14 @@ public class Kit {
         this.errorActions = errorActions;
     }
 
+    public ArrayList<KitAction> getNoPermissionActions() {
+        return noPermissionActions;
+    }
+
+    public void setNoPermissionActions(ArrayList<KitAction> noPermissionActions) {
+        this.noPermissionActions = noPermissionActions;
+    }
+
     public KitItem getDisplayItemOneTime() {
         return displayItemOneTime;
     }
@@ -210,6 +219,13 @@ public class Kit {
                 actions.add(action.clone());
             }
             errorActions = actions;
+        }
+        if(defaultKit.getNoPermissionActions() != null){
+            ArrayList<KitAction> actions = new ArrayList<>();
+            for(KitAction action : defaultKit.getNoPermissionActions()){
+                actions.add(action.clone());
+            }
+            noPermissionActions = actions;
         }
         displayItemDefault = defaultKit.getDisplayItemDefault() != null ? defaultKit.getDisplayItemDefault().clone() : null;
         displayItemNoPermission = defaultKit.getDisplayItemNoPermission() != null ? defaultKit.getDisplayItemNoPermission().clone() : null;

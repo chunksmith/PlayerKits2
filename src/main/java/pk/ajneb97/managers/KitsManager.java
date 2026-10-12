@@ -165,6 +165,11 @@ public class KitsManager {
         if(!giveKitInstructions.isFromCommand()){
             //Permission
             if(!giveKitInstructions.isIgnorePermission() && !kit.playerHasPermission(player)){
+                //no_permission actions replace the error actions and the chat message (e.g. open a store dialog)
+                if(!kit.getNoPermissionActions().isEmpty()){
+                    sendKitActions(kit.getNoPermissionActions(),player,false);
+                    return PlayerKitsMessageResult.error("");
+                }
                 sendKitActions(kit.getErrorActions(),player,false);
                 return PlayerKitsMessageResult.error(messagesFile.getString("kitNoPermissions"));
             }

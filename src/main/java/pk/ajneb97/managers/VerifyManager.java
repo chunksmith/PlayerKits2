@@ -77,6 +77,7 @@ public class VerifyManager {
         }
         verifyActions(kit.getClaimActions(),"claim",kitName);
         verifyActions(kit.getErrorActions(),"error",kitName);
+        verifyActions(kit.getNoPermissionActions(),"no_permission",kitName);
 
         //Items
         ArrayList<KitItem> allKitItems = new ArrayList<KitItem>();
